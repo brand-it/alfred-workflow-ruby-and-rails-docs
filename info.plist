@@ -680,6 +680,6 @@ print({ items: items }.to_json)
 	<key>version</key>
 	<string>1.0</string>
 	<key>webaddress</key>
-	<string>http://www.alfredapp.com</string>
+	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>
 </plist>

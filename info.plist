@@ -272,7 +272,7 @@ query = ARGV[0].to_s
 class Config
   URL_RUBY_VERSION = URI('https://api.github.com/gists/a056aa3cb3a19b7438614d3aab5cbee8')
   FILE_PATH = File.expand_path('./ruby_version.json')
-  ONE_DAY = 86_400 * 12
+  TWELVE_DAYS = 86_400 * 12
 
   class &lt;&lt; self
     def version_names
@@ -299,10 +299,14 @@ class Config
 
     def file(expired: true)
       return unless File.exist?(FILE_PATH) &amp;&amp; File.readable?(FILE_PATH)
-      return if File.mtime(FILE_PATH) + ONE_DAY &gt; Time.now &amp;&amp; expired
+      return unless file_expired? &amp;&amp; expired
       File.read(FILE_PATH)
     end
-    
+
+    def file_expired?
+      (File.mtime(FILE_PATH) + TWELVE_DAYS) &gt;= Time.now
+    end
+
     def request
       Net::HTTP.get(URL_RUBY_VERSION).tap { |response| File.write(FILE_PATH, response) }
     rescue JSON::ParserError
@@ -315,7 +319,7 @@ class Config
     rescue JSON::ParserError
       default
     end
-  end  
+  end
 end
 
 class Gql
@@ -347,9 +351,9 @@ class Gql
         nil
       end
     end
-    
+
     attr_reader :query, :version
-    
+
     def initialize(version, query)
       @version = version
       @query = query

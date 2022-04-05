@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>5235B416-66AF-420A-B9EB-76156D2DF6BE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>08CDF7D0-6E98-4748-995B-C822EA0E3A62</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6F7BB1C9-4226-4052-9215-20360AADC1C1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5235B416-66AF-420A-B9EB-76156D2DF6BE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>query</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>84F27AFE-7CD6-4A70-8F3E-A4ECF497B888</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F43E11F2-D825-46B4-876A-75450A22752D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Open In Search</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F43E11F2-D825-46B4-876A-75450A22752D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>61724D26-F550-4A7E-A020-9373CBBCFF3B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CA527B95-6EE0-415F-96FE-4F15F03F28CA</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F8C5D133-7C4D-44F2-845B-FAE1568A09E7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Brandt Lareau</string>
+	<key>description</key>
+	<string>Use keyword "rails" to search API docs</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Ruby &amp; Rails API Docs</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>rails</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Show details for rails '{query}'</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>F8C5D133-7C4D-44F2-845B-FAE1568A09E7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string>+</string>
+				<key>url</key>
+				<string>https://api.rubyonrails.org/?q={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string>+</string>
+				<key>url</key>
+				<string>https://rubyapi.org{var:path}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>08CDF7D0-6E98-4748-995B-C822EA0E3A62</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:path}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>\S</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>5235B416-66AF-420A-B9EB-76156D2DF6BE</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string>+</string>
+				<key>url</key>
+				<string>https://rubyapi.org/{var:version}/o/s?q={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>ruby</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>require 'uri'
+require 'json'
+require 'net/http'
+query = ARGV[0].to_s
+
+class Config
+  URL_RUBY_VERSION = URI('https://api.github.com/gists/a056aa3cb3a19b7438614d3aab5cbee8')
+  FILE_PATH = File.expand_path('./ruby_version.json')
+  ONE_DAY = 86_400 * 12
+
+  class &lt;&lt; self
+    def version_names
+      @version_names ||= Config.ruby_versions + Config.eol_ruby_versions.map { |v| "EOL #{v}" }
+    end
+
+    def ruby_versions
+      @ruby_version ||= json_parser(cached_config.dig('files', 'ruby_versions.json', 'content'))
+    end
+
+    def default_ruby_version
+      @default_ruby_version ||= cached_config.dig('files', 'default_ruby_version.txt', 'content') || '3.1'
+    end
+
+    def eol_ruby_versions
+      @eol_ruby_versions ||= json_parser(cached_config.dig('files', 'eol_ruby_versions.json', 'content'))
+    end
+
+    private
+
+    def cached_config
+      @cached_config ||= json_parser(file || request || file(expired: false), {})
+    end
+
+    def file(expired: true)
+      return unless File.exist?(FILE_PATH) &amp;&amp; File.readable?(FILE_PATH)
+      return if File.mtime(FILE_PATH) + ONE_DAY &gt; Time.now &amp;&amp; expired
+      File.read(FILE_PATH)
+    end
+    
+    def request
+      Net::HTTP.get(URL_RUBY_VERSION).tap { |response| File.write(FILE_PATH, response) }
+    rescue JSON::ParserError
+      '{}'
+    end
+
+    def json_parser(content, default = [])
+      return default if content.nil?
+      JSON.parse(content)
+    rescue JSON::ParserError
+      default
+    end
+  end  
+end
+
+class Gql
+  class Base
+
+    QUERY = &lt;&lt;-GRAPHQL
+      query GetAutocompleteResults($query: String!, $version: String = "3.1") {
+        autocomplete(query: $query, version: $version) {
+          text
+          path
+        }
+      }
+    GRAPHQL
+
+    Response = Struct.new(:http) do
+      def success?
+        http.is_a?(Net::HTTPSuccess)
+      end
+
+      def body
+        @body ||= http.read_body
+      end
+
+      def parsed_body
+        return {} if body.nil?
+
+        @parsed_body ||= JSON.parse(body)
+      rescue JSON::ParserError
+        nil
+      end
+    end
+    
+    attr_reader :query, :version
+    
+    def initialize(version, query)
+      @version = version
+      @query = query
+    end
+
+    def request
+      uri = URI('https://rubyapi.org/graphql')
+      https = https(uri)
+      request = Net::HTTP::Post.new(uri)
+      request['Content-Type'] = 'application/json'
+      request.body = { query: QUERY, variables: { query: query, version: version } }.to_json
+
+      Response.new https.request(request)
+    end
+
+    def https(uri)
+      Net::HTTP.new(uri.host, uri.port).tap do |http|
+        http.use_ssl = true
+      end
+    end
+  end
+end
+
+version = Config.version_names.find { |v| query.include?("v#{v}") || query.include?("V#{v}") } || Config.default_ruby_version
+query = query.gsub("v#{version}", '').gsub("V#{version}", '').strip
+response = Gql::Base.new(version, query).request
+autocomplete = response.parsed_body.dig('data', 'autocomplete') || []
+items = autocomplete.map do |result|
+  {
+    uid: result['path'],
+    type: 'default',
+    arg: result['path'],
+    subtitle: "view #{result['path']}",
+    title: result['text'],
+    autocomplete: result['text'],
+    variables: {
+      path: result['path'],
+      version: version
+    }
+  }
+end
+if items.empty?
+  items = [
+    {
+      uid: query,
+      type: 'default',
+      arg: query,
+      subtitle: 'No results found',
+      title: query,
+      autocomplete: query,
+      variables: {
+        path: nil,
+        version: version
+      }
+    }
+  ]
+end
+
+
+print({ items: items }.to_json)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search For ruby code on Ruby API</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6F7BB1C9-4226-4052-9215-20360AADC1C1</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string>+</string>
+				<key>url</key>
+				<string>https://rubygems.org/gems/{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>61724D26-F550-4A7E-A020-9373CBBCFF3B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{var:gem_exists}</string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>1</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>CA527B95-6EE0-415F-96FE-4F15F03F28CA</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>missing</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>F43E11F2-D825-46B4-876A-75450A22752D</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>gem</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>require 'uri'
+require 'json'
+require 'net/http'
+query = ARGV[0].to_s
+
+return print({ items: [] }.to_json) if query == ''
+
+class Request
+  def self.get(query)
+    uri = URI("https://rubygems.org/api/v1/search/autocomplete?query=#{query}")
+    https = https(uri)
+    request = Net::HTTP::Get.new(uri)
+    https.request(request)
+  end
+
+  def self.https(uri)
+    Net::HTTP.new(uri.host, uri.port).tap do |http|
+      http.use_ssl = true
+    end
+  end
+end
+
+items = JSON.parse(Request.get(query).body).map do |result|
+  {
+    uid: result,
+    type: 'default',
+    arg: result,
+    subtitle: "view rubygems.org/gems/#{result}",
+    title: result,
+    autocomplete: result,
+    variables: {
+      gem_exists: true
+    }
+  }
+end
+if items.empty?
+  items = [
+    {
+      uid: query,
+      type: 'default',
+      arg: query,
+      subtitle: 'No results found',
+      title: query,
+      autocomplete: query,
+      variables: {
+        gem_exists: false
+      }
+    }
+  ]
+end
+print({ items: items }.to_json)
+</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search For Gem in rubygems.org</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>84F27AFE-7CD6-4A70-8F3E-A4ECF497B888</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string>+</string>
+				<key>url</key>
+				<string>https://rubygems.org/search?query={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Quick tool for search ruby docs for info.</string>
+	<key>uidata</key>
+	<dict>
+		<key>047410F1-29DE-499A-ADAD-04EDD6C50229</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>535</integer>
+		</dict>
+		<key>08CDF7D0-6E98-4748-995B-C822EA0E3A62</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>5235B416-66AF-420A-B9EB-76156D2DF6BE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>240</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
+		<key>52E29BF5-7C4C-4A68-B573-8036E61B92D2</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>35</integer>
+		</dict>
+		<key>61724D26-F550-4A7E-A020-9373CBBCFF3B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>340</integer>
+			<key>ypos</key>
+			<integer>415</integer>
+		</dict>
+		<key>6F7BB1C9-4226-4052-9215-20360AADC1C1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+		<key>84F27AFE-7CD6-4A70-8F3E-A4ECF497B888</key>
+		<dict>
+			<key>xpos</key>
+			<integer>55</integer>
+			<key>ypos</key>
+			<integer>535</integer>
+		</dict>
+		<key>DA544092-7475-4CFA-B051-CA53E811D804</key>
+		<dict>
+			<key>xpos</key>
+			<integer>345</integer>
+			<key>ypos</key>
+			<integer>280</integer>
+		</dict>
+		<key>F43E11F2-D825-46B4-876A-75450A22752D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>220</integer>
+			<key>ypos</key>
+			<integer>470</integer>
+		</dict>
+		<key>F8C5D133-7C4D-44F2-845B-FAE1568A09E7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>35</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>http://www.alfredapp.com</string>
+</dict>
+</plist>

@@ -264,122 +264,13 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>require 'uri'
-require 'json'
-require 'net/http'
+				<string>require './config'
+require './gql/ruby_api'
 query = ARGV[0].to_s
-
-class Config
-  URL_RUBY_VERSION = URI('https://api.github.com/gists/a056aa3cb3a19b7438614d3aab5cbee8')
-  FILE_PATH = File.expand_path('./ruby_version.json')
-  TWELVE_DAYS = 86_400 * 12
-
-  class &lt;&lt; self
-    def version_names
-      @version_names ||= Config.ruby_versions + Config.eol_ruby_versions.map { |v| "EOL #{v}" }
-    end
-
-    def ruby_versions
-      @ruby_version ||= json_parser(cached_config.dig('files', 'ruby_versions.json', 'content'))
-    end
-
-    def default_ruby_version
-      @default_ruby_version ||= cached_config.dig('files', 'default_ruby_version.txt', 'content') || '3.1'
-    end
-
-    def eol_ruby_versions
-      @eol_ruby_versions ||= json_parser(cached_config.dig('files', 'eol_ruby_versions.json', 'content'))
-    end
-
-    private
-
-    def cached_config
-      @cached_config ||= json_parser(file || request || file(expired: false), {})
-    end
-
-    def file(expired: true)
-      return unless File.exist?(FILE_PATH) &amp;&amp; File.readable?(FILE_PATH)
-      return unless file_expired? &amp;&amp; expired
-      File.read(FILE_PATH)
-    end
-
-    def file_expired?
-      (File.mtime(FILE_PATH) + TWELVE_DAYS) &gt;= Time.now
-    end
-
-    def request
-      Net::HTTP.get(URL_RUBY_VERSION).tap { |response| File.write(FILE_PATH, response) }
-    rescue JSON::ParserError
-      '{}'
-    end
-
-    def json_parser(content, default = [])
-      return default if content.nil?
-      JSON.parse(content)
-    rescue JSON::ParserError
-      default
-    end
-  end
-end
-
-class Gql
-  class Base
-
-    QUERY = &lt;&lt;-GRAPHQL
-      query GetAutocompleteResults($query: String!, $version: String = "3.1") {
-        autocomplete(query: $query, version: $version) {
-          text
-          path
-        }
-      }
-    GRAPHQL
-
-    Response = Struct.new(:http) do
-      def success?
-        http.is_a?(Net::HTTPSuccess)
-      end
-
-      def body
-        @body ||= http.read_body
-      end
-
-      def parsed_body
-        return {} if body.nil?
-
-        @parsed_body ||= JSON.parse(body)
-      rescue JSON::ParserError
-        nil
-      end
-    end
-
-    attr_reader :query, :version
-
-    def initialize(version, query)
-      @version = version
-      @query = query
-    end
-
-    def request
-      uri = URI('https://rubyapi.org/graphql')
-      https = https(uri)
-      request = Net::HTTP::Post.new(uri)
-      request['Content-Type'] = 'application/json'
-      request.body = { query: QUERY, variables: { query: query, version: version } }.to_json
-
-      Response.new https.request(request)
-    end
-
-    def https(uri)
-      Net::HTTP.new(uri.host, uri.port).tap do |http|
-        http.use_ssl = true
-      end
-    end
-  end
-end
 
 version = Config.version_names.find { |v| query.include?("v#{v}") || query.include?("V#{v}") } || Config.default_ruby_version
 query = query.gsub("v#{version}", '').gsub("V#{version}", '').strip
-response = Gql::Base.new(version, query).request
+response = Gql::RubyApi.new(version, query).request
 autocomplete = response.parsed_body.dig('data', 'autocomplete') || []
 items = autocomplete.map do |result|
   {
@@ -512,29 +403,13 @@ print({ items: items }.to_json)
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>require 'uri'
-require 'json'
-require 'net/http'
+				<string>require './autocomplete_gem'
 query = ARGV[0].to_s
 
 return print({ items: [] }.to_json) if query == ''
 
-class Request
-  def self.get(query)
-    uri = URI("https://rubygems.org/api/v1/search/autocomplete?query=#{query}")
-    https = https(uri)
-    request = Net::HTTP::Get.new(uri)
-    https.request(request)
-  end
 
-  def self.https(uri)
-    Net::HTTP.new(uri.host, uri.port).tap do |http|
-      http.use_ssl = true
-    end
-  end
-end
-
-items = JSON.parse(Request.get(query).body).map do |result|
+items = JSON.parse(AutocompleteGem.get(query).body).map do |result|
   {
     uid: result,
     type: 'default',
@@ -682,7 +557,7 @@ print({ items: items }.to_json)
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>

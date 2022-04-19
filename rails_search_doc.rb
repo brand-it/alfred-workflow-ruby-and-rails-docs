@@ -39,6 +39,10 @@ class RailsSearchDoc
       presence(self[:args])
     end
 
+    def path
+      presence(self[:path])
+    end
+
     def presence(str)
       return if str.to_s == ''
 
@@ -54,7 +58,8 @@ class RailsSearchDoc
   def results
     @results ||= search_index['info'].select { |v| v[0].downcase.include?(query) || v[1].downcase.include?(query) }
                                      .map { |v| Response.new(version, *v) }
-                                     .sort { |r| (query.size - r.meth.size).abs }
+                                     .reject { |v| v.path.nil? }
+                                     .sort_by { |r| query == '' ? r.meth : r.meth.to_s.gsub(query, '').size }
   end
 
   private

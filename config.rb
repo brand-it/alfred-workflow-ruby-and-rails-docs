@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require 'json'
+require 'net/http'
+require 'uri'
+
 # Basic Config info for the application
 class Config
   URL_RUBY_VERSION = URI('https://api.github.com/gists/a056aa3cb3a19b7438614d3aab5cbee8')
@@ -12,7 +16,7 @@ class Config
     end
 
     def ruby_versions
-      @ruby_version ||= json_parser(cached_config.dig('files', 'ruby_versions.json', 'content'))
+      @ruby_versions ||= json_parser(cached_config.dig('files', 'ruby_versions.json', 'content'))
     end
 
     def default_ruby_version

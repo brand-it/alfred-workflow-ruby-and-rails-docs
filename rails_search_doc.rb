@@ -2,6 +2,7 @@
 
 require 'json'
 require 'net/http'
+require_relative 'rails_versions'
 
 # Search Ruby API docs using a given query and version
 class RailsSearchDoc
@@ -16,10 +17,10 @@ class RailsSearchDoc
     end
 
     def title
-      return "#{meth}#{args}" if meth && args
-      return "#{meth}" if meth
+      return "v#{version} #{meth}#{args}" if meth && args
+      return "v#{version} #{meth}" if meth
 
-      klass
+      "v#{version} #{klass}"
     end
 
     def description
@@ -51,7 +52,7 @@ class RailsSearchDoc
   end
 
   def initialize(version, query)
-    @query = query.downcase
+    @query = query.downcase.gsub("v#{RailsVersions.new(query).version}", '').strip
     @version = version
   end
 
@@ -60,6 +61,7 @@ class RailsSearchDoc
                                      .map { |v| Response.new(version, *v) }
                                      .reject { |v| v.path.nil? }
                                      .sort_by { |r| query == '' ? r.meth : r.meth.to_s.gsub(query, '').size }
+                                     .take(10)
   end
 
   private

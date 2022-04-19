@@ -264,46 +264,45 @@ require './rails_search_doc'
 require './rails_versions'
 require 'securerandom'
 
-
 query = ARGV[0].to_s
-versions = RailsVersions.new.results
-version = versions.find { |v| query.include?("v#{v}") || query.include?("V#{v}") } || versions.first
-query = query.gsub("v#{version}", '').gsub("V#{version}", '').strip
-responses = RailsSearchDoc.new(version, query).results
-items = responses.map do |response|
-  {
-    uid: SecureRandom.uuid,
-    type: 'default',
-    arg: query,
-    subtitle: response.description,
-    title: response.title,
-	autocomplete: response.title,
-    variables: {
-      url: response.url,
-      version: version
-    }
-  }.compact
-end
-if items.empty?
-  items = [
+rails_versions = RailsVersions.new(query)
+
+items = []
+rails_versions.results.each do |version|
+  responses = RailsSearchDoc.new(version, query).results
+  items += responses.map do |response|
     {
-      uid: query,
+      uid: SecureRandom.uuid,
       type: 'default',
       arg: query,
-      subtitle: 'No results found',
-      title: query,
-      autocomplete: query,
+      subtitle: response.description,
+      title: response.title,
+    autocomplete: response.title,
       variables: {
-        url: nil,
+        url: response.url,
         version: version
       }
-    }
-  ]
+    }.compact
+  end
+  if items.empty?
+    items += [
+      {
+        uid: query,
+        type: 'default',
+        arg: query,
+        subtitle: 'No results found',
+        title: query,
+        autocomplete: query,
+        variables: {
+          url: nil,
+          version: version
+        }
+      }
+    ]
+  end
 end
 
-
-print({ items: items }.to_json)
-					</string>
+print({ items: items }.to_json)</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -727,7 +726,7 @@ print({ items: items }.to_json)
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.2</string>
+	<string>2.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>

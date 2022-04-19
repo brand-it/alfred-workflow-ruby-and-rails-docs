@@ -20,7 +20,7 @@ class RailsVersions
   end
 
   def results
-    versions.select { |v| rails_doc_exists?(v) && version_matches?(v) }.take(10)
+    versions.select { |v| rails_doc_exists?(v) && version_matches?(v) }.take(30)
   end
 
   private

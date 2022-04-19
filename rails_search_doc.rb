@@ -54,6 +54,7 @@ class RailsSearchDoc
   def results
     @results ||= search_index['info'].select { |v| v[0].downcase.include?(query) || v[1].downcase.include?(query) }
                                      .map { |v| Response.new(version, *v) }
+                                     .sort { |r| (query.size - r.meth.size).abs }
   end
 
   private

@@ -8,7 +8,7 @@ require_relative 'rails_versions'
 class RailsSearchDoc
   REMOVE_JAVASCRIPT = 'var search_data = '
   HOST = 'https://api.rubyonrails.org'
-  attr_reader :query, :version
+  attr_reader :query, :versions
 
   # Meth is one hell of a drug it is also short for method in this case
   Response = Struct.new(:version, :meth, :klass, :path, :args, :description) do
@@ -51,38 +51,47 @@ class RailsSearchDoc
     end
   end
 
-  def initialize(version, query)
+  def initialize(versions, query)
     @query = query.downcase.gsub("v#{RailsVersions.new(query).version}", '').strip
-    @version = version
+    @versions = versions.take(10)
   end
 
   def results
-    @results ||= search_index['info'].select { |v| v[0].downcase.include?(query) || v[1].downcase.include?(query) }
-                                     .map { |v| Response.new(version, *v) }
-                                     .reject { |v| v.path.nil? }
-                                     .sort_by { |r| query == '' ? r.meth : r.meth.to_s.gsub(query, '').size }
-                                     .take(10)
+    @results ||= search_index.select { |i| i[1]&.downcase&.include?(query) || i[2]&.downcase&.include?(query) }
+                             .take(50)
+                             .map { |i| Response.new(*i) }
   end
 
   private
 
   def search_index
-    JSON.parse(download_search_doc)['index']
+    versions.flat_map { |v| download_search_doc(v) }
+  end
+
+  def download_search_doc(version)
+    return JSON.parse(File.read(file_path(version))) if file_exists?(version)
+
+    post_download_search_doc Net::HTTP.get(search_index_url(version)).gsub(REMOVE_JAVASCRIPT, ''), version
+  end
+
+  def file_exists?(version)
+    File.exist?(file_path(version)) && File.readable?(file_path(version))
+  end
+
+  def post_download_search_doc(response, version)
+    JSON.parse(response).dig('index', 'info').tap do |info|
+      info.map! { |i| [version] + i }
+      File.write(file_path(version), info.to_json)
+    end
   rescue JSON::ParserError
-    { 'info' => [] }
+    []
   end
 
-  def download_search_doc
-    return File.read(file_path) if File.exist?(file_path) && File.readable?(file_path)
-
-    Net::HTTP.get(search_index_url).gsub(REMOVE_JAVASCRIPT, '').tap { |response| File.write(file_path, response) }
+  def file_path(version)
+    File.expand_path("./#{version}_search_index.json")
   end
 
-  def file_path
-    @file_path ||= File.expand_path("./#{version}_search_index.json")
-  end
-
-  def search_index_url
+  def search_index_url(version)
     URI("#{HOST}/v#{version}/js/search_index.js")
   end
 end

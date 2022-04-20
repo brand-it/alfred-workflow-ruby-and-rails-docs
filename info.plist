@@ -267,39 +267,36 @@ require 'securerandom'
 query = ARGV[0].to_s
 rails_versions = RailsVersions.new(query)
 
-items = []
-rails_versions.results.each do |version|
-  responses = RailsSearchDoc.new(version, query).results
-  items += responses.map do |response|
+responses = RailsSearchDoc.new(rails_versions.results, query).results
+items = responses.map do |response|
+  {
+    uid: SecureRandom.uuid,
+    type: 'default',
+    arg: query,
+    subtitle: response.description,
+    title: response.title,
+  autocomplete: response.title,
+    variables: {
+      url: response.url,
+      version: response.version
+    }
+  }.compact
+end
+if items.empty?
+  items = [
     {
-      uid: SecureRandom.uuid,
+      uid: query,
       type: 'default',
       arg: query,
-      subtitle: response.description,
-      title: response.title,
-    autocomplete: response.title,
+      subtitle: 'No results found',
+      title: query,
+      autocomplete: query,
       variables: {
-        url: response.url,
-        version: version
+        url: nil,
+        version: rails_versions.first
       }
-    }.compact
-  end
-  if items.empty?
-    items += [
-      {
-        uid: query,
-        type: 'default',
-        arg: query,
-        subtitle: 'No results found',
-        title: query,
-        autocomplete: query,
-        variables: {
-          url: nil,
-          version: version
-        }
-      }
-    ]
-  end
+    }
+  ]
 end
 
 print({ items: items }.to_json)</string>
@@ -726,7 +723,7 @@ print({ items: items }.to_json)
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.4</string>
+	<string>2.5</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>

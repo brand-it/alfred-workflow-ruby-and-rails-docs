@@ -32,8 +32,8 @@ class RailsVersions
   def rails_doc_exists?(version)
     return cached_versions[version] if cached_versions.key?(version)
 
-    exists = Net::HTTP.get_response(URI("#{RailsSearchDoc::HOST}/v#{version}/")).code == '200'
-    (cached_versions[version] = exists).then { save_changes! }
+    exists = Net::HTTP.get_response(URI("#{RailsSearchDoc::HOST}/v#{version}/js/search_index.js")).code == '200'
+    (cached_versions[version] = exists).tap { save_changes! }
   end
 
   def cached_versions

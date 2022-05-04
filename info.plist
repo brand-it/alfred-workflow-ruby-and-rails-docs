@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9AD60706-C389-4BC5-9ADE-08661E7B9F83</string>
+				<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -26,32 +26,17 @@
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>open in query</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>5235B416-66AF-420A-B9EB-76156D2DF6BE</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>08CDF7D0-6E98-4748-995B-C822EA0E3A62</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
+				<string>Query {query}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
+				<string>E5C37A3F-1DEF-413C-A20B-7F127437FE65</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>131072</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Copy to clipboard {var:url}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -60,7 +45,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>5235B416-66AF-420A-B9EB-76156D2DF6BE</string>
+				<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -70,11 +55,21 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
+				<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>query</string>
+				<string>Query {query}</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>E5C37A3F-1DEF-413C-A20B-7F127437FE65</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Copy to clipboard {var:url}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -83,36 +78,11 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F43E11F2-D825-46B4-876A-75450A22752D</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
-				<key>modifiers</key>
-				<integer>1048576</integer>
-				<key>modifiersubtext</key>
-				<string>Open In Search</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>9AD60706-C389-4BC5-9ADE-08661E7B9F83</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
 				<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-				<key>sourceoutputuid</key>
-				<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -120,34 +90,19 @@
 				<key>destinationuid</key>
 				<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>F43E11F2-D825-46B4-876A-75450A22752D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>61724D26-F550-4A7E-A020-9373CBBCFF3B</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>CA527B95-6EE0-415F-96FE-4F15F03F28CA</string>
+				<string>Query {query}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
+				<string>E5C37A3F-1DEF-413C-A20B-7F127437FE65</string>
 				<key>modifiers</key>
-				<integer>0</integer>
+				<integer>131072</integer>
 				<key>modifiersubtext</key>
-				<string></string>
+				<string>Copy to clipboard {var:url}</string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -163,74 +118,6 @@
 	<string>Ruby &amp; Rails API Docs</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string>+</string>
-				<key>url</key>
-				<string>{var:url}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:url}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>4</integer>
-						<key>matchstring</key>
-						<string>\S</string>
-						<key>outputlabel</key>
-						<string>found</string>
-						<key>uid</key>
-						<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>missing</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>9AD60706-C389-4BC5-9ADE-08661E7B9F83</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string>+</string>
-				<key>url</key>
-				<string>https://api.rubyonrails.org/?q={query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -272,7 +159,7 @@ items = responses.map do |response|
   {
     uid: SecureRandom.uuid,
     type: 'default',
-    arg: query,
+    arg: "https://api.rubyonrails.org/?q=#{query}",
     subtitle: response.description,
     title: response.title,
   autocomplete: response.title,
@@ -288,11 +175,11 @@ if items.empty?
       uid: query,
       type: 'default',
       arg: query,
-      subtitle: 'No results found',
+      subtitle: "Search for #{query}",
       title: query,
       autocomplete: query,
       variables: {
-        url: nil,
+        url: "https://api.rubyonrails.org/?q=#{query}",
         version: rails_versions.first
       }
     }
@@ -328,44 +215,14 @@ print({ items: items }.to_json)</string>
 				<key>spaces</key>
 				<string>+</string>
 				<key>url</key>
-				<string>https://rubyapi.org{var:path}</string>
+				<string>{var:url}</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>08CDF7D0-6E98-4748-995B-C822EA0E3A62</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:path}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>4</integer>
-						<key>matchstring</key>
-						<string>\S</string>
-						<key>outputlabel</key>
-						<string>found</string>
-						<key>uid</key>
-						<string>F2D07989-4DFE-4791-AE7B-D7E1306D6462</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>missing</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>5235B416-66AF-420A-B9EB-76156D2DF6BE</string>
+			<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -398,23 +255,23 @@ print({ items: items }.to_json)</string>
 				<string></string>
 				<key>script</key>
 				<string>require './config'
-require './gql/ruby_api'
+require './gql/base'
 query = ARGV[0].to_s
 
 version = Config.version_names.find { |v| query.include?("v#{v}") || query.include?("V#{v}") } || Config.default_ruby_version
 query = query.gsub("v#{version}", '').gsub("V#{version}", '').strip
-response = Gql::RubyApi.new(version, query).request
+response = Gql::RubyAutocomplete.new(version, query).results
 autocomplete = response.parsed_body.dig('data', 'autocomplete') || []
 items = autocomplete.map do |result|
   {
     uid: result['path'],
     type: 'default',
-    arg: result['path'],
+    arg: "https://rubyapi.org/{var:version}/o/s?q=#{query}",
     subtitle: "view #{result['path']}",
     title: result['text'],
     autocomplete: result['text'],
     variables: {
-      path: result['path'],
+      url: "https://rubyapi.org/#{result['path']}",
       version: version
     }
   }
@@ -425,11 +282,11 @@ if items.empty?
       uid: query,
       type: 'default',
       arg: query,
-      subtitle: 'No results found',
+      subtitle: "Search for #{query}",
       title: query,
       autocomplete: query,
       variables: {
-        path: nil,
+        url: "https://rubyapi.org/{var:version}/o/s?q=#{query}",
         version: version
       }
     }
@@ -467,63 +324,14 @@ print({ items: items }.to_json)
 				<key>spaces</key>
 				<string>+</string>
 				<key>url</key>
-				<string>https://rubyapi.org/{var:version}/o/s?q={query}</string>
+				<string>{query}</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>DA544092-7475-4CFA-B051-CA53E811D804</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string>+</string>
-				<key>url</key>
-				<string>https://rubygems.org/gems/{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>61724D26-F550-4A7E-A020-9373CBBCFF3B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string>{var:gem_exists}</string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>1</integer>
-						<key>matchstring</key>
-						<string>0</string>
-						<key>outputlabel</key>
-						<string>found</string>
-						<key>uid</key>
-						<string>CA527B95-6EE0-415F-96FE-4F15F03F28CA</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>missing</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>F43E11F2-D825-46B4-876A-75450A22752D</string>
+			<string>52E29BF5-7C4C-4A68-B573-8036E61B92D2</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -565,12 +373,12 @@ items = JSON.parse(AutocompleteGem.get(query).body).map do |result|
   {
     uid: result,
     type: 'default',
-    arg: result,
+    arg: "https://rubygems.org/search?query=#{query}",
     subtitle: "view rubygems.org/gems/#{result}",
     title: result,
     autocomplete: result,
     variables: {
-      gem_exists: true
+      url: "https://rubyapi.org/#{result}"
     }
   }
 end
@@ -580,11 +388,11 @@ if items.empty?
       uid: query,
       type: 'default',
       arg: query,
-      subtitle: 'No results found',
+      subtitle: "Search For #{query}",
       title: query,
       autocomplete: query,
       variables: {
-        gem_exists: false
+        url: "https://rubygems.org/search?query=#{query}"
       }
     }
   ]
@@ -614,114 +422,75 @@ print({ items: items }.to_json)
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string>+</string>
-				<key>url</key>
-				<string>https://rubygems.org/search?query={query}</string>
-				<key>utf8</key>
+				<key>autopaste</key>
 				<true/>
+				<key>clipboardtext</key>
+				<string>{var:url}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>047410F1-29DE-499A-ADAD-04EDD6C50229</string>
+			<string>E5C37A3F-1DEF-413C-A20B-7F127437FE65</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string>Quick tool for search ruby docs for info.</string>
 	<key>uidata</key>
 	<dict>
-		<key>047410F1-29DE-499A-ADAD-04EDD6C50229</key>
-		<dict>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>625</integer>
-		</dict>
-		<key>08CDF7D0-6E98-4748-995B-C822EA0E3A62</key>
-		<dict>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>250</integer>
-		</dict>
 		<key>0C8B4CF2-63A1-4F22-8C66-208A7ED1B714</key>
 		<dict>
 			<key>xpos</key>
-			<integer>40</integer>
+			<integer>45</integer>
 			<key>ypos</key>
-			<integer>125</integer>
-		</dict>
-		<key>5235B416-66AF-420A-B9EB-76156D2DF6BE</key>
-		<dict>
-			<key>xpos</key>
-			<integer>225</integer>
-			<key>ypos</key>
-			<integer>330</integer>
+			<integer>15</integer>
 		</dict>
 		<key>52E29BF5-7C4C-4A68-B573-8036E61B92D2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>125</integer>
-		</dict>
-		<key>61724D26-F550-4A7E-A020-9373CBBCFF3B</key>
-		<dict>
-			<key>xpos</key>
-			<integer>340</integer>
-			<key>ypos</key>
-			<integer>505</integer>
+			<integer>130</integer>
 		</dict>
 		<key>6F7BB1C9-4226-4052-9215-20360AADC1C1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>50</integer>
+			<integer>45</integer>
 			<key>ypos</key>
-			<integer>370</integer>
+			<integer>130</integer>
 		</dict>
 		<key>84F27AFE-7CD6-4A70-8F3E-A4ECF497B888</key>
 		<dict>
 			<key>xpos</key>
-			<integer>55</integer>
+			<integer>45</integer>
 			<key>ypos</key>
-			<integer>625</integer>
+			<integer>245</integer>
 		</dict>
-		<key>9AD60706-C389-4BC5-9ADE-08661E7B9F83</key>
+		<key>E5C37A3F-1DEF-413C-A20B-7F127437FE65</key>
 		<dict>
 			<key>xpos</key>
-			<integer>215</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>85</integer>
-		</dict>
-		<key>DA544092-7475-4CFA-B051-CA53E811D804</key>
-		<dict>
-			<key>xpos</key>
-			<integer>345</integer>
-			<key>ypos</key>
-			<integer>370</integer>
+			<integer>245</integer>
 		</dict>
 		<key>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>340</integer>
+			<integer>470</integer>
 			<key>ypos</key>
 			<integer>15</integer>
 		</dict>
-		<key>F43E11F2-D825-46B4-876A-75450A22752D</key>
-		<dict>
-			<key>xpos</key>
-			<integer>220</integer>
-			<key>ypos</key>
-			<integer>580</integer>
-		</dict>
 	</dict>
-	<key>variablesdontexport</key>
-	<array/>
+	<key>variables</key>
+	<dict>
+		<key>VERSION</key>
+		<string>2.6</string>
+	</dict>
 	<key>version</key>
 	<string>2.5</string>
 	<key>webaddress</key>

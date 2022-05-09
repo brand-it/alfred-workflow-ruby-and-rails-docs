@@ -142,53 +142,13 @@
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>Preloading Rails Versions for the first time this might take a while</string>
 				<key>script</key>
-				<string>require './config'
-require './rails_search_doc'
-require './rails_versions'
-require 'securerandom'
-
-query = ARGV[0].to_s
-rails_versions = RailsVersions.new(query)
-
-responses = RailsSearchDoc.new(rails_versions.results, query).results
-items = responses.map do |response|
-  {
-    uid: SecureRandom.uuid,
-    type: 'default',
-    arg: "https://api.rubyonrails.org/?q=#{query}",
-    subtitle: response.description,
-    title: response.title,
-  autocomplete: response.title,
-    variables: {
-      url: response.url,
-      version: response.version
-    }
-  }.compact
-end
-if items.empty?
-  items = [
-    {
-      uid: query,
-      type: 'default',
-      arg: query,
-      subtitle: "Search for #{query}",
-      title: query,
-      autocomplete: query,
-      variables: {
-        url: "https://api.rubyonrails.org/?q=#{query}",
-        version: rails_versions.first
-      }
-    }
-  ]
-end
-
-print({ items: items }.to_json)</string>
+				<string>./bin/rails '{query}'</string>
 				<key>scriptargtype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -196,7 +156,7 @@ print({ items: items }.to_json)</string>
 				<key>title</key>
 				<string>Search Rails Docs</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -225,96 +185,6 @@ print({ items: items }.to_json)</string>
 			<string>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>alfredfiltersresults</key>
-				<false/>
-				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
-				<key>argumenttreatemptyqueryasnil</key>
-				<true/>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>ruby</string>
-				<key>queuedelaycustom</key>
-				<integer>3</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>queuedelaymode</key>
-				<integer>1</integer>
-				<key>queuemode</key>
-				<integer>1</integer>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>script</key>
-				<string>require './config'
-require './gql/base'
-query = ARGV[0].to_s
-
-version = Config.version_names.find { |v| query.include?("v#{v}") || query.include?("V#{v}") } || Config.default_ruby_version
-query = query.gsub("v#{version}", '').gsub("V#{version}", '').strip
-response = Gql::RubyAutocomplete.new(version, query).results
-autocomplete = response.parsed_body.dig('data', 'autocomplete') || []
-items = autocomplete.map do |result|
-  {
-    uid: result['path'],
-    type: 'default',
-    arg: "https://rubyapi.org/{var:version}/o/s?q=#{query}",
-    subtitle: "view #{result['path']}",
-    title: result['text'],
-    autocomplete: result['text'],
-    variables: {
-      url: "https://rubyapi.org/#{result['path']}",
-      version: version
-    }
-  }
-end
-if items.empty?
-  items = [
-    {
-      uid: query,
-      type: 'default',
-      arg: query,
-      subtitle: "Search for #{query}",
-      title: query,
-      autocomplete: query,
-      variables: {
-        url: "https://rubyapi.org/{var:version}/o/s?q=#{query}",
-        version: version
-      }
-    }
-  ]
-end
-
-
-print({ items: items }.to_json)
-					</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>subtext</key>
-				<string></string>
-				<key>title</key>
-				<string>Search For ruby code on Ruby API</string>
-				<key>type</key>
-				<integer>2</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>6F7BB1C9-4226-4052-9215-20360AADC1C1</string>
-			<key>version</key>
-			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -351,6 +221,55 @@ print({ items: items }.to_json)
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
+				<string>ruby</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>1</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>./bin/ruby '{query}'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>Search For ruby code on Ruby API</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>6F7BB1C9-4226-4052-9215-20360AADC1C1</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
 				<string>gem</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
@@ -363,44 +282,9 @@ print({ items: items }.to_json)
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>require './autocomplete_gem'
-query = ARGV[0].to_s
-
-return print({ items: [] }.to_json) if query == ''
-
-
-items = JSON.parse(AutocompleteGem.get(query).body).map do |result|
-  {
-    uid: result,
-    type: 'default',
-    arg: "https://rubygems.org/search?query=#{query}",
-    subtitle: "view rubygems.org/gems/#{result}",
-    title: result,
-    autocomplete: result,
-    variables: {
-      url: "https://rubyapi.org/#{result}"
-    }
-  }
-end
-if items.empty?
-  items = [
-    {
-      uid: query,
-      type: 'default',
-      arg: query,
-      subtitle: "Search For #{query}",
-      title: query,
-      autocomplete: query,
-      variables: {
-        url: "https://rubygems.org/search?query=#{query}"
-      }
-    }
-  ]
-end
-print({ items: items }.to_json)
-					</string>
+				<string>./bin/gem '{query}'</string>
 				<key>scriptargtype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -408,7 +292,7 @@ print({ items: items }.to_json)
 				<key>title</key>
 				<string>Search For Gem in rubygems.org</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -494,7 +378,7 @@ print({ items: items }.to_json)
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.6.0</string>
+	<string>3.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>

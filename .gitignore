@@ -1,3 +1,4 @@
 *search_index.json
 rails_versions.json
 ruby_version.json
+cache/*

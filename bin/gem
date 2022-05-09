@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require './autocomplete_gem'
+query = ARGV[0].to_s
+
+items = AutocompleteGem.new(query).results.map do |result|
+  {
+    uid: result,
+    type: 'default',
+    arg: "https://rubygems.org/search?query=#{query}",
+    subtitle: "view rubygems.org/gems/#{result}",
+    title: result,
+    autocomplete: result,
+    variables: {
+      url: "https://rubyapi.org/#{result}"
+    }
+  }
+end
+if items.empty?
+  items = [
+    {
+      uid: query,
+      type: 'default',
+      arg: query,
+      subtitle: "Search For #{query}",
+      title: query,
+      autocomplete: query,
+      variables: {
+        url: "https://rubygems.org/search?query=#{query}"
+      }
+    }
+  ]
+end
+print({ items: items }.to_json)

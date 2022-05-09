@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require './gql/base'
+
+query = ARGV[0].to_s
+
+search = Gql::RubyAutocomplete.new(query)
+items = search.results.map do |result|
+  {
+    uid: result['path'],
+    type: 'default',
+    arg: "https://rubyapi.org/#{result['version']}/o/s?q=#{search.query}",
+    subtitle: "view #{result['path']}",
+    title: result['text'],
+    autocomplete: result['text'],
+    variables: {
+      url: "https://rubyapi.org#{result['path']}"
+    }
+  }
+end
+if items.empty?
+  items = RubyVersions.new.results.map do |version|
+    {
+      uid: query,
+      type: 'default',
+      arg: "https://rubyapi.org/#{version}/o/s?q=#{search.query}",
+      subtitle: "Search https://rubyapi.org/#{version}/o/s?q=#{search.query}",
+      title: "Query for v#{version} #{query}",
+      autocomplete: query,
+      variables: {
+        url: "https://rubyapi.org/#{version}/o/s?q=#{search.query}"
+      }
+    }
+  end
+end
+
+print({ items: items }.to_json)

@@ -2,13 +2,15 @@
 
 require 'json'
 require 'net/http'
+require_relative 'file_cache'
 require_relative 'rails_versions'
 
 # Search Ruby API docs using a given query and version
 class RailsSearchDoc
   REMOVE_JAVASCRIPT = 'var search_data = '
   HOST = 'https://api.rubyonrails.org'
-  attr_reader :query, :versions
+  LIMIT = 50
+  attr_reader :query, :versions, :limit
 
   # Meth is one hell of a drug it is also short for method in this case
   Response = Struct.new(:version, :meth, :klass, :path, :args, :description) do
@@ -51,44 +53,40 @@ class RailsSearchDoc
     end
   end
 
-  def initialize(versions, query)
-    @query = query.downcase.gsub("v#{RailsVersions.new(query).version}", '').strip
-    @versions = versions.take(10)
+  def initialize(query)
+    rails_versions = RailsVersions.new(query)
+    @query = rails_versions.query
+    @versions = rails_versions.results
   end
 
   def results
-    @results ||= search_index.select { |i| i[1]&.downcase&.include?(query) || i[2]&.downcase&.include?(query) }
-                             .take(50)
+    @results ||= search_index.select { |i| match?(i) }
+                             .take(LIMIT)
                              .map { |i| Response.new(*i) }
   end
 
   private
 
+  def match?(item)
+    item[1]&.downcase&.include?(query) || item[2]&.downcase&.include?(query)
+  end
+
   def search_index
-    versions.flat_map { |v| download_search_doc(v) }
+    versions.map { |v| Thread.new { download_search_doc(v) } }.each(&:join).flat_map(&:value)
   end
 
   def download_search_doc(version)
-    return JSON.parse(File.read(file_path(version))) if file_exists?(version)
-
-    post_download_search_doc Net::HTTP.get(search_index_url(version)).gsub(REMOVE_JAVASCRIPT, ''), version
-  end
-
-  def file_exists?(version)
-    File.exist?(file_path(version)) && File.readable?(file_path(version))
+    FileCache.new(['rails_search_doc_search_index', version]).fetch do
+      post_download_search_doc Net::HTTP.get(search_index_url(version)).gsub(REMOVE_JAVASCRIPT, ''), version
+    end
   end
 
   def post_download_search_doc(response, version)
     JSON.parse(response).dig('index', 'info').tap do |info|
       info.map! { |i| [version] + i }
-      File.write(file_path(version), info.to_json)
     end
   rescue JSON::ParserError
     []
-  end
-
-  def file_path(version)
-    File.expand_path("./#{version}_search_index.json")
   end
 
   def search_index_url(version)

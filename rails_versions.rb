@@ -43,7 +43,7 @@ class RailsVersions
 
   def versions
     expires_in = 60 * 60 * 24 # 1 day
-    FileCache.new('gem_rails_versions', expires_in: expires_in).fetch do
+    @versions ||= FileCache.new('gem_rails_versions', expires_in: expires_in).fetch do
       Net::HTTP.get(HOST).scan(RAILS_VERSION_PATTERN).flatten.uniq.sort.reverse
     end
   end

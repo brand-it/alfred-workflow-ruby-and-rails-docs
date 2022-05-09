@@ -27,7 +27,7 @@ class RailsVersions
   private
 
   def avalable_versions
-    FileCache.new(['rails_avalable_versions']).fetch do
+    FileCache.new(['rails_avalable_versions', versions.size.to_s]).fetch do
       version_exists = versions.map { |v| Thread.new { rails_doc_exists?(v) } }.each(&:join).flat_map(&:value)
       versions.zip(version_exists).select { |v| v[1] }.map(&:first)
     end

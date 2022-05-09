@@ -14,8 +14,9 @@ class FileCache
   attr_reader :key, :expires_in, :compress, :dir_path
 
   def initialize(key, expires_in: MAX_EXPIRES_IN, compress: true)
+    key = key.reject { |k| k.to_s == '' } if key.is_a?(Array)
     @key = key.is_a?(Array) ? key.last : key
-    @dir_path = key[0..-2].reject { |k| k.to_s == '' }.join('/') if key.is_a?(Array)
+    @dir_path = key[0..-2].join('/') if key.is_a?(Array)
     @dir_path = nil if @dir_path.to_s == ''
     @expires_in = expires_in
     @compress = compress

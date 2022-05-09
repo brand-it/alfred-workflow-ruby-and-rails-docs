@@ -12,7 +12,7 @@ items = AutocompleteGem.new(query).results.map do |result|
     title: result,
     autocomplete: result,
     variables: {
-      url: "https://rubyapi.org/#{result}"
+      url: "https://rubygems.org/gems/#{result}"
     }
   }
 end

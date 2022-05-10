@@ -21,7 +21,7 @@ class RailsVersions
   end
 
   def results
-    avalable_versions.select { |v| version_matches?(v) }.take(LIMIT)
+    avalable_versions.select { |v| version_matches?(v) }.sort.reverse.take(LIMIT)
   end
 
   private

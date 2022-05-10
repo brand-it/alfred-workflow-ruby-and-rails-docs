@@ -60,7 +60,7 @@ class RailsSearchDoc
   end
 
   def results
-    @results ||= FileCache.new(['rails_search_doc_search_index', query]).fetch do
+    @results ||= FileCache.new(['rails_search_doc_search_index', versions.join.delete('.'), query]).fetch do
       search_index.select { |i| match?(i) }
                   .take(LIMIT)
                   .map { |i| Response.new(*i) }

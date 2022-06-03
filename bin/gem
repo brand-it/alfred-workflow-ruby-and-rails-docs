@@ -12,7 +12,8 @@ items = AutocompleteGem.new(query).results.map do |result|
     title: result,
     autocomplete: result,
     variables: {
-      url: "https://rubygems.org/gems/#{result}"
+      url: "https://rubygems.org/gems/#{result}",
+      title: result
     }
   }
 end
@@ -26,7 +27,8 @@ if items.empty?
       title: query,
       autocomplete: query,
       variables: {
-        url: "https://rubygems.org/search?query=#{query}"
+        url: "https://rubygems.org/search?query=#{query}",
+        title: query
       }
     }
   ]

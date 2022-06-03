@@ -14,7 +14,8 @@ items = search.results.map do |result|
     title: result['text'],
     autocomplete: result['text'],
     variables: {
-      url: "https://rubyapi.org#{result['path']}"
+      url: "https://rubyapi.org#{result['path']}",
+      title: result['text'].split('#').last
     }
   }
 end
@@ -28,7 +29,8 @@ if items.empty?
       title: "Query for v#{version} #{query}",
       autocomplete: query,
       variables: {
-        url: "https://rubyapi.org/#{version}/o/s?q=#{search.query}"
+        url: "https://rubyapi.org/#{version}/o/s?q=#{search.query}",
+        title: "Query for v#{version} #{query}"
       }
     }
   end

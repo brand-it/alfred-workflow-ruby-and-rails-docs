@@ -7,9 +7,10 @@ require_relative 'rails_versions'
 
 # Search Ruby API docs using a given query and version
 class RailsSearchDoc
-  REMOVE_JAVASCRIPT = 'var search_data = '
   HOST = 'https://api.rubyonrails.org'
-  LIMIT = 50
+  LIMIT = 100
+  REMOVE_JAVASCRIPT = 'var search_data = '
+  VERSION_BOOST = 100
   attr_reader :query, :versions, :limit
 
   # Meth is one hell of a drug it is also short for method in this case
@@ -60,8 +61,9 @@ class RailsSearchDoc
   end
 
   def results
-    @results ||= FileCache.new(['rails_search_doc_search_index', versions.join.delete('.'), query]).fetch do
+    @results ||= FileCache.new(['rails_search_doc_search_index', 'results', versions.join.delete('.'), query]).fetch do
       search_index.select { |i| match?(i) }
+                  .sort_by { |i| sorter(i) }
                   .take(LIMIT)
                   .map { |i| Response.new(*i) }
     end
@@ -71,6 +73,17 @@ class RailsSearchDoc
 
   def match?(item)
     item[1]&.downcase&.include?(query) || item[2]&.downcase&.include?(query)
+  end
+
+  def sorter(item)
+    rails_versions_score[item.first] + (item[1].length - query.length).abs + (item[5].to_s == '' ? 1 : 0)
+  end
+
+  def rails_versions_score
+    @rails_versions_score ||= versions.each_with_object(Hash.new(versions.size * VERSION_BOOST))
+                                      .with_index do |(version, hash), index|
+      hash[version] = index * VERSION_BOOST
+    end
   end
 
   def search_index

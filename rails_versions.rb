@@ -9,8 +9,8 @@ require_relative 'file_cache'
 # Search Ruby API docs using a given query and version
 class RailsVersions
   HOST = URI('https://rubygems.org/gems/rails/versions')
-  RAILS_VERSION_PATTERN = %r{/gems/rails/versions/(?<version>\S+)"}.freeze
-  VERSION_PATTERN = /(v)(\S+)/i.freeze
+  RAILS_VERSION_PATTERN = %r{/gems/rails/versions/(?<version>\d+.\d+.\d|\d+.\d+|\d+)"}.freeze
+  VERSION_PATTERN = /(v)(\d+.\d+.\d|\d+.\d+|\d+)/i.freeze
   LIMIT = 10
   attr_reader :version, :prefix, :query
 

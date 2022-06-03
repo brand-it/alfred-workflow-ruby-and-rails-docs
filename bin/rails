@@ -17,22 +17,24 @@ items = search.results.map do |result|
     autocomplete: result.title,
     variables: {
       url: result.url,
-      version: result.version
+      version: result.version,
+      title: result.title
     }
   }.compact
 end
 if items.empty?
-  items = RailsVersions.new.results.map do |version|
+  items = search.versions.map do |version|
     {
       uid: query,
       type: 'default',
       arg: query,
-      subtitle: "Search #{version} #{query}",
+      subtitle: "Search #{version} #{search.query}",
       title: query,
       autocomplete: query,
       variables: {
-        url: "https://api.rubyonrails.org/#{version}?q=#{search.query}",
-        version: version
+        url: "https://api.rubyonrails.org/v#{version}?q=#{search.query}",
+        version: version,
+        title: query
       }
     }
   end

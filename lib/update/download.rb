@@ -34,7 +34,7 @@ module Update
       cleanup
       Response.new(nil, true, latest_release.response['tag_name'], latest_release.response['html_url'])
     rescue StandardError => e
-      Response.new(e.message, true, latest_release.response['tag_name'], latest_release.response['html_url'])
+      Response.new(e.message, false, latest_release.response['tag_name'], latest_release.response['html_url'])
     end
 
     private
@@ -48,7 +48,7 @@ module Update
     end
 
     def start_download
-      Net::HTTP.start(gem.server.host, gem.server.port, use_ssl: gem.server.is_a?(URI::HTTPS)) do |http|
+      Net::HTTP.start(latest_release.download_uri.host, latest_release.download_uri.port, use_ssl: latest_release.download_uri.is_a?(URI::HTTPS)) do |http|
         request = Net::HTTP::Get.new gem.download_path
         http.request request do |response|
           response.read_body do |chunk|

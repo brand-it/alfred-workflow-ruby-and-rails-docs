@@ -1,6 +1,6 @@
 module Update
   class Available
-    VERSION = 'v4.0.0'
+    VERSION = 'v4.0.1'
     Reaponse = Struct.new(:message, :update_available)
 
     attr_reader :latest_release
@@ -11,7 +11,7 @@ module Update
 
     def call
       if latest_release.response['tag_name'] == VERSION
-        Reaponse.new("Already on newest version #{VERSION}", false)
+        Reaponse.new("Already on newest version #{latest_release.response['tag_name']}", false)
       else
         Reaponse.new("New version #{latest_release.response['tag_name']} available", true)
       end

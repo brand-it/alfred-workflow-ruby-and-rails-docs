@@ -35,6 +35,9 @@ module Update
       Response.new(nil, true, latest_release.response['tag_name'], latest_release.response['html_url'])
     rescue StandardError => e
       Response.new(e.message, false, latest_release.response['tag_name'], latest_release.response['html_url'])
+    ensure
+      zipfile.close
+      zipfile.unlink
     end
 
     private

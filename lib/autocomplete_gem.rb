@@ -5,6 +5,7 @@ require 'json'
 require 'net/http'
 require 'base64'
 require_relative 'file_cache'
+
 class AutocompleteGem
   attr_reader :query
 

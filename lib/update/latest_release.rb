@@ -2,7 +2,7 @@ module Update
   class LatestRelease
     RELEASES = URI('https://api.github.com/repos/brand-it/alfred-workflow-ruby-and-rails-docs/releases')
 
-    Response = Struct.new(:response, :browser_download_uri)
+    Response = Struct.new(:response, :download_uri)
 
     def call
       Response.new(response, browser_download_uri)

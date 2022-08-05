@@ -10,13 +10,13 @@ item = if response.success
            uid: SecureRandom.uuid,
            type: 'default',
            arg: response.url,
-           subtitle: "Update successful you are now on version #{response.version}",
-           title: 'Update Successful',
-           autocomplete: "Update successful you are now on version #{response.version}",
+           subtitle: response.message,
+           title: response.message,
+           autocomplete: response.message,
            variables: {
              url: response.url,
              version: response.version,
-             title: "Update was successful you are now on version #{response.version}"
+             title: response.message
            }
          }.compact
        else
@@ -26,11 +26,11 @@ item = if response.success
            arg: response.url,
            subtitle: response.message,
            title: 'Update Failure',
-           autocomplete: "Update Failure: #{response.message}",
+           autocomplete: response.message,
            variables: {
              url: response.url,
              version: response.version,
-             title: "Update Failure: #{response.message}"
+             title: response.message
            }
          }.compact
        end

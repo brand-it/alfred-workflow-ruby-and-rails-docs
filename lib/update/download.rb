@@ -11,7 +11,7 @@ require_relative 'latest_release'
 module Update
   class Download
     RELEASES = URI('https://api.github.com/repos/brand-it/alfred-workflow-ruby-and-rails-docs/releases')
-    CURRENT_FILES = Dir['**/*']
+    CURRENT_FILES = Dir['**/*'].map { |f| File.expand_path(f) }
     ROOT_PATH = File.expand_path('./')
 
     Response = Struct.new(:message, :success, :version, :url)
@@ -29,12 +29,12 @@ module Update
         )
       end
 
-      start_download
+      zipfile.write(start_download.body)
       unzip
       cleanup
       Response.new(nil, true, latest_release.response['tag_name'], latest_release.response['html_url'])
     rescue StandardError => e
-      Response.new(e.message, true, latest_release.response['tag_name'], latest_release.response['html_url'])
+      Response.new(e.message, false, latest_release.response['tag_name'], latest_release.response['html_url'])
     end
 
     private
@@ -47,44 +47,43 @@ module Update
       @latest_release ||= LatestRelease.new.call
     end
 
-    def start_download
-      Net::HTTP.start(gem.server.host, gem.server.port, use_ssl: gem.server.is_a?(URI::HTTPS)) do |http|
-        request = Net::HTTP::Get.new gem.download_path
-        http.request request do |response|
-          response.read_body do |chunk|
-            zipfile.write(chunk)
-          end
-        end
+    def start_download(url = latest_release.download_url, limit = 10)
+      raise ArgumentError, 'too many HTTP redirects' if limit.zero?
+
+      url = URI(url) unless url.is_a?(URI)
+      https = https(url)
+      request = Net::HTTP::Get.new(url)
+      https.request(request).then do |response|
+        return response if response.is_a?(Net::HTTPSuccess)
+
+        start_download(response['location'], limit - 1)
       end
-    ensure
-      zipfile.close
+    end
+
+    def https(uri)
+      Net::HTTP.new(uri.host, uri.port).tap do |http|
+        http.use_ssl = true
+      end
     end
 
     def unzip
       Zip.on_exists_proc = true
       Zip::File.open(zipfile) do |zip_file|
         zip_file.each do |entry|
-          @updated_files << entry.name
-          entry.extract(ROOT_PATH)
+          @updated_files << "#{ROOT_PATH}/#{entry.name}"
+          entry.extract("#{ROOT_PATH}/#{entry.name}")
         end
       end
     end
 
     def cleanup
       (CURRENT_FILES - @updated_files).each do |file|
-        FileUtils.rm_rf(file)
+        File.rm_rf(file)
       end
     end
 
     def zipfile
       @zipfile ||= Tempfile.new('alfred-workflow-ruby-and-rails-docs')
-    end
-
-    def browser_download_uri
-      url = latest_release&.dig('assets')&.find do |a|
-        a['name'] == 'Ruby.Rails.API.Docs.alfredworkflow'
-      end&.dig('browser_download_url')
-      URI(url) if url
     end
   end
 end

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './autocomplete_gem'
+require './lib/autocomplete_gem'
 query = ARGV[0].to_s
 
 items = AutocompleteGem.new(query).results.map do |result|

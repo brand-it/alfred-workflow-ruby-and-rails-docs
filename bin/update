@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require './lib/update/download'
+require 'securerandom'
+
+response = Update::Download.new.call
+
+item = if response.success
+         {
+           uid: SecureRandom.uuid,
+           type: 'default',
+           arg: response.url,
+           subtitle: "Update successful you are now on version #{response.version}",
+           title: 'Update Successful',
+           autocomplete: "Update successful you are now on version #{response.version}",
+           variables: {
+             url: response.url,
+             version: response.version,
+             title: "Update was successful you are now on version #{response.version}"
+           }
+         }.compact
+       else
+         {
+           uid: SecureRandom.uuid,
+           type: 'default',
+           arg: response.url,
+           subtitle: response.message,
+           title: 'Update Failure',
+           autocomplete: "Update Failure: #{response.message}",
+           variables: {
+             url: response.url,
+             version: response.version,
+             title: "Update Failure: #{response.message}"
+           }
+         }.compact
+       end
+print({ items: [item] }.to_json)

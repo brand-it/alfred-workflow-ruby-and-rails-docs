@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './rails_search_doc'
+require './lib/rails_search_doc'
 require 'securerandom'
 
 query = ARGV[0].to_s

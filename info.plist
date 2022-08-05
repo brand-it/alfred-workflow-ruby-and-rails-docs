@@ -153,12 +153,14 @@
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string>+</string>
 				<key>url</key>
 				<string>{var:url}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -195,7 +197,8 @@
 				<key>runningsubtext</key>
 				<string>Preloading Rails Versions for the first time this might take a while</string>
 				<key>script</key>
-				<string>./bin/rails '{query}'</string>
+				<string>chmod 755 ./bin/rails
+./bin/rails '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -221,12 +224,14 @@
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string>+</string>
 				<key>url</key>
 				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.openurl</string>
@@ -263,7 +268,8 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./bin/ruby '{query}'</string>
+				<string>chmod 755 ./bin/ruby
+./bin/ruby '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -331,7 +337,8 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./bin/gem '{query}'</string>
+				<string>chmod 755 ./bin/gem
+./bin/gem '{query}'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -379,57 +386,59 @@
 		<key>0C8B4CF2-63A1-4F22-8C66-208A7ED1B714</key>
 		<dict>
 			<key>xpos</key>
-			<integer>45</integer>
+			<real>45</real>
 			<key>ypos</key>
-			<integer>15</integer>
+			<real>15</real>
 		</dict>
 		<key>52E29BF5-7C4C-4A68-B573-8036E61B92D2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<real>470</real>
 			<key>ypos</key>
-			<integer>130</integer>
+			<real>130</real>
 		</dict>
 		<key>55F78E2D-FE94-41C3-830D-AE8AFEA57D75</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<real>470</real>
 			<key>ypos</key>
-			<integer>360</integer>
+			<real>360</real>
 		</dict>
 		<key>6F7BB1C9-4226-4052-9215-20360AADC1C1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>45</integer>
+			<real>45</real>
 			<key>ypos</key>
-			<integer>130</integer>
+			<real>130</real>
 		</dict>
 		<key>84F27AFE-7CD6-4A70-8F3E-A4ECF497B888</key>
 		<dict>
 			<key>xpos</key>
-			<integer>45</integer>
+			<real>45</real>
 			<key>ypos</key>
-			<integer>245</integer>
+			<real>245</real>
 		</dict>
 		<key>E5C37A3F-1DEF-413C-A20B-7F127437FE65</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<real>470</real>
 			<key>ypos</key>
-			<integer>245</integer>
+			<real>245</real>
 		</dict>
 		<key>EC687312-5BBB-4C9B-AE06-2C406DDB04C1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>470</integer>
+			<real>470</real>
 			<key>ypos</key>
-			<integer>15</integer>
+			<real>15</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>3.4.0</string>
+	<string>3.4.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/brand-it/alfred-workflow-ruby-and-rails-docs</string>
 </dict>

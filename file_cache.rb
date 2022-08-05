@@ -104,6 +104,8 @@ class FileCache
     Thread.new do
       Dir["#{CACHE_DIR}/**/*"].each do |file|
         File.delete(file) if File.mtime(file) < Time.now - MAX_EXPIRES_IN
+      rescue Errno::EPERM
+        FileUtils.rm_rf(file)
       end
     end.join
   end

@@ -14,8 +14,10 @@ class RailsSearchDoc
   attr_reader :query, :versions, :limit
 
   # Meth is one hell of a drug it is also short for method in this case
-  Response = Struct.new(:version, :meth, :klass, :path, :args, :description) do
+  Response = Struct.new(:version, :meth, :klass, :path, :args, :description, :query) do
     def url
+      endpoint, anchor = path.split('#')
+      path = [endpoint, "?q=#{query}", "##{anchor}"].compact.join
       "#{HOST}/v#{version}/#{path}"
     end
 
@@ -65,7 +67,7 @@ class RailsSearchDoc
       search_index.select { |i| match?(i) }
                   .sort_by { |i| sorter(i) }
                   .take(LIMIT)
-                  .map { |i| Response.new(*i) }
+                  .map { |i| Response.new(*(i + [query])) }
     end
   end
 

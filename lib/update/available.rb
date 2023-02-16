@@ -1,6 +1,6 @@
 module Update
   class Available
-    VERSION = 'v4.0.1'
+    VERSION = 'v4.1.0'
     Reaponse = Struct.new(:message, :update_available)
 
     attr_reader :latest_release

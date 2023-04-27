@@ -9,7 +9,7 @@ search = RailsSearchDoc.new(query)
 
 items = search.results.map do |result|
   {
-    uid: SecureRandom.uuid,
+    uid: result.uid,
     type: 'default',
     arg: "https://api.rubyonrails.org/v#{result.version}?q=#{search.query}",
     subtitle: result.description,
@@ -18,14 +18,14 @@ items = search.results.map do |result|
     variables: {
       url: result.url,
       version: result.version,
-      title: result.title
+      title: result.title,
     }
   }.compact
 end
 if items.empty?
   items = search.versions.map do |version|
     {
-      uid: query,
+      uid: search.uid,
       type: 'default',
       arg: query,
       subtitle: "Search #{version} #{search.query}",

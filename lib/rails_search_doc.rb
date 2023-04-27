@@ -17,7 +17,7 @@ class RailsSearchDoc
   Response = Struct.new(:version, :meth, :klass, :path, :args, :description, :query) do
     def url
       endpoint, anchor = path.split('#')
-      path = [endpoint, "?q=#{query}", "##{anchor}"].compact.join
+      path = [endpoint, "##{anchor}"].compact.join
       "#{HOST}/v#{version}/#{path}"
     end
 

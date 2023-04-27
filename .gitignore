@@ -2,3 +2,4 @@
 rails_versions.json
 ruby_version.json
 cache/*
+.DS_Store

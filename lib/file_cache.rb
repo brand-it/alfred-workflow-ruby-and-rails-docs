@@ -9,8 +9,11 @@ require 'zlib'
 # end
 class FileCache
   class Error < StandardError; end
+
+  CACHE_DIR = "#{ENV['TMPDIR'] || ENV['TMP'] || ENV['TEMP']}ruby_and_rails_api_docs_#{VERSION}".freeze
   MAX_EXPIRES_IN = 60 * 60 * 24 * 30 # 1 month
-  CACHE_DIR = File.expand_path('./cache').tap { |path| FileUtils.mkdir_p(path) }
+  VERSION = '1'.freeze
+
   attr_reader :key, :expires_in, :compress, :dir_path
 
   def initialize(key, expires_in: MAX_EXPIRES_IN, compress: true)

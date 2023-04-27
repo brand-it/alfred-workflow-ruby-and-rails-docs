@@ -25,7 +25,7 @@ end
 if items.empty?
   items = search.versions.map do |version|
     {
-      uid: search.uid,
+      uid: SecureRandom.uuid,
       type: 'default',
       arg: query,
       subtitle: "Search #{version} #{search.query}",

@@ -28,6 +28,10 @@ class RailsSearchDoc
       "v#{version} #{klass}"
     end
 
+    def uid
+      Base64.encode64(title).strip
+    end
+    
     def description
       self[:description].gsub!(/<\S+>/, '')
       presence(self[:description])
